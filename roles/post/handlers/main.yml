@@ -1,2 +1,6 @@
 ---
-# handlers file for post
+- name: reload reddit-post
+  systemd: 
+    name: reddit-post
+    state: restarted 
+    daemon_reload: true

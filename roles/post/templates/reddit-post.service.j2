@@ -1,0 +1,14 @@
+[Unit]
+Description=Reddit Post HTTP Server
+After=network.target
+
+[Service]
+Type=simple
+User={{ ansible_user }}
+WorkingDirectory={{ reddit_path }}/post-py
+EnvironmentFile={{ reddit_path }}/post-py/post_config
+ExecStart=/usr/bin/python3 post_app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

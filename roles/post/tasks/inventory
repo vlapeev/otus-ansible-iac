@@ -1,0 +1,2 @@
+[web]
+lazyhost ansible_host=34.76.73.219 ansible_user=ubuntu

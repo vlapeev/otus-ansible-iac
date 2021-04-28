@@ -9,7 +9,7 @@
       dest: /opt/reddit
       version: microservices_for_mc
   roles:
-  #   - post
+    - post
     - ui
     - comment
   #   - db

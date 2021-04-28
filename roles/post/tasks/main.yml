@@ -1,2 +1,24 @@
 ---
-# tasks file for post
+- name: install pip3
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: true
+
+- name: install post dependencies
+  pip:
+    state: present
+    requirements: /opt/reddit/post-py/requirements.txt
+    executable: pip3
+
+- name: add post_config
+  template:
+    src: post_config.j2
+    dest: /opt/reddit/post-py/post_config
+  notify: reload reddit-post
+
+- name: add reddit-post.service
+  template:
+    src: reddit-post.service.j2
+    dest: /etc/systemd/system/reddit-post.service
+  notify: reload reddit-post
