@@ -1,2 +1,23 @@
 ---
-# tasks file for ui
+- name: install bundler
+  apt:
+    name: bundler
+    state: present
+    update_cache: true
+    
+- name: install ui dependencies
+  bundler:
+    state: present
+    gemfile: /opt/reddit/ui/Gemfile
+
+- name: add ui_config
+  template:
+    src: ui_config.j2
+    dest: /opt/reddit/ui/ui_config
+  notify: reload reddit-ui
+
+- name: add reddit-ui.service
+  template:
+    src: reddit-ui.service.j2
+    dest: /etc/systemd/system/reddit-ui.service
+  notify: reload reddit-ui

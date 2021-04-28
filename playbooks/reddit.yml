@@ -1,9 +1,16 @@
 ---
 - hosts: all
   become: true
+  gather_facts: false
+  pre_tasks:
+  - name: clone repo
+    git:
+      repo: https://github.com/express42/reddit.git
+      dest: /opt/reddit
+      version: microservices_for_mc
   roles:
-    - post
+  #   - post
     - ui
-    - comment
-    - db
+  #   - comment
+  #   - db
 ...
