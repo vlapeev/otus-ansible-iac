@@ -1,0 +1,14 @@
+[Unit]
+Description=Puma HTTP Server
+After=network.target
+
+[Service]
+Type=simple
+User={{ ansible_user }}
+WorkingDirectory={{ reddit_path }}/comment
+EnvironmentFile={{ reddit_path }}/comment/comment_config
+ExecStart=/bin/bash -lc 'puma -b tcp://0.0.0.0:9293'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

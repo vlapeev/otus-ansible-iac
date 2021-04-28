@@ -11,6 +11,6 @@
   roles:
   #   - post
     - ui
-  #   - comment
+    - comment
   #   - db
 ...
